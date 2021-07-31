@@ -5,6 +5,8 @@
         <div class="text-center">
             <h1>Welcome to the Travel Photos</h1>
             <img src="image/travel.jpeg" class="img-fluid" alt="travel image">
+            {{-- ユーザ登録ページへのリンク --}}
+            {!! link_to_route('signup.get', 'Sign up now!', [], ['class' => 'btn btn-lg btn-primary']) !!}
         </div>
     </div>
 @endsection
