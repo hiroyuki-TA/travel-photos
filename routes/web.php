@@ -29,3 +29,10 @@ Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
+
+//authミドルウェアを指定することで認証を必要とするようになる
+//['only' => ['index', 'show']]はControllerの７つのアクションのうちindex（ユーザー一覧）
+//とshow(ユーザー詳細)だけに絞り込んでいる
+Route::group(['middleware' => ['auth']],function(){
+    Route::resource('users','UserController',['only' => ['index','show']]);
+});
