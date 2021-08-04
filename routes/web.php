@@ -34,5 +34,5 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 //['only' => ['index', 'show']]はControllerの７つのアクションのうちindex（ユーザー一覧）
 //とshow(ユーザー詳細)だけに絞り込んでいる
 Route::group(['middleware' => ['auth']],function(){
-    Route::resource('users','UserController',['only' => ['index','show']]);
+    Route::resource('users','UsersController',['only' => ['index','show']]);
 });

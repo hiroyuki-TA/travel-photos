@@ -8,7 +8,7 @@ use App\User;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index()  //ユーザー一覧
     {
            // ユーザ一覧をidの降順で取得 idを基準にdesc降順
         $users = User::orderBy('id', 'desc')->paginate(10);
@@ -18,4 +18,16 @@ class UsersController extends Controller
             'users' => $users,
         ]);
     }
+    
+     public function show($id)
+    {
+        // idの値でユーザを検索して取得
+        $user = User::findOrFail($id);
+
+        // ユーザ詳細ビューでそれを表示
+        return view('users.show', [
+            'user' => $user,
+        ]);
+    }
+
 }
