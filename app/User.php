@@ -36,4 +36,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     *userはphotoを複数持てるため複数形でphotosメソッドを定義
+     * 複数持つ方hasMany 単数の方belongsTO
+     */ 
+    public function photos()
+    {
+         return $this->hasMany(Photo::class);
+    }
+     /**     
+      * このユーザに関係するモデルの件数をロードする。
+      */
+    public function loadRelationshipCounts()
+    {
+        $this->loadCount('photos');
+     }
 }

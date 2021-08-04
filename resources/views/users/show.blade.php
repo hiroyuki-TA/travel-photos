@@ -1,3 +1,4 @@
+{{-- ユーザー詳細view--}}
 @extends('layouts.app')
 
 @section('content')
