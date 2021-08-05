@@ -17,9 +17,7 @@
  * resources/views/ フォルダにある welcome という名前のついた拡張子 .blade.php のファイルが表示される。
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PhotosController@index');
 
 // ユーザ登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
@@ -33,6 +31,9 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 //authミドルウェアを指定することで認証を必要とするようになる
 //['only' => ['index', 'show']]はControllerの７つのアクションのうちindex（ユーザー一覧）
 //とshow(ユーザー詳細)だけに絞り込んでいる
+//store登録　destroy削除
 Route::group(['middleware' => ['auth']],function(){
     Route::resource('users','UsersController',['only' => ['index','show']]);
+    Route::resource('photos','PhotosController', ['only' => ['store', 'destroy']]);
+    
 });
