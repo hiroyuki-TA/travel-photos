@@ -67,10 +67,11 @@ class User extends Authenticatable
       */
     public function loadRelationshipCounts()
     {
-        $this->loadCount('photos');
+       
+        $this->loadCount(['photos', 'followings', 'followers']);
      }
      
-     public function follow($useId)
+     public function follow($userId)
      {
           // すでにフォローしているかの確認
         $exist = $this->is_following($userId);
